@@ -1,4 +1,4 @@
-import {cloud} from './supabase.js';
+import {cloud} from './supabase.js?v=3';
 
 const panelId='cloud-sync-panel',activeKey='paper-english-active-user',migrationKey='paper-english-migration';
 const blank=()=>({sets:[],attempts:[],settings:{motion:'balanced'},session:null});

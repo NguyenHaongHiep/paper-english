@@ -1,4 +1,4 @@
-import {SUPABASE_URL,SUPABASE_ANON_KEY} from './supabase-config.js';
+import {SUPABASE_URL,SUPABASE_ANON_KEY} from './supabase-config.js?v=3';
 
 const connection=()=>({url:localStorage.getItem('paper-english-supabase-url')||SUPABASE_URL,key:localStorage.getItem('paper-english-supabase-key')||SUPABASE_ANON_KEY});
 const configured=()=>{let {url,key}=connection();return url.startsWith('https://')&&key.length>20};
