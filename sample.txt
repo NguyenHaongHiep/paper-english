@@ -1,0 +1,12 @@
+Q: She ___ to school every day.
+A. go
+B. goes
+C. going
+D. gone
+ANSWER: B
+EXPLANATION: She là ngôi thứ ba số ít.
+
+TYPE: sentence
+PROMPT: Cô ấy học tiếng Anh mỗi ngày.
+ANSWER: She studies English every day.
+EXPLANATION: Thì hiện tại đơn với chủ ngữ she.
