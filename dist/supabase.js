@@ -11,6 +11,8 @@ export const cloud={
  storeSession(session){if(session)localStorage.setItem('paper-english-supabase-session',JSON.stringify(session));else localStorage.removeItem('paper-english-supabase-session')},
  async signUp(email,password){return request('/auth/v1/signup',{method:'POST',headers:headers(),body:JSON.stringify({email,password})})},
  async signIn(email,password){return request('/auth/v1/token?grant_type=password',{method:'POST',headers:headers(),body:JSON.stringify({email,password})})},
+ async resetPassword(email,redirectTo){return request('/auth/v1/recover',{method:'POST',headers:headers(),body:JSON.stringify({email,redirect_to:redirectTo})})},
+ async updatePassword(password,token){return request('/auth/v1/user',{method:'PUT',headers:headers(token),body:JSON.stringify({password})})},
  async refresh(refreshToken){return request('/auth/v1/token?grant_type=refresh_token',{method:'POST',headers:headers(),body:JSON.stringify({refresh_token:refreshToken})})},
  async signOut(token){try{await request('/auth/v1/logout',{method:'POST',headers:headers(token)})}finally{this.storeSession(null)}},
  async load(userId,token){let rows=await request(`/rest/v1/app_data?user_id=eq.${encodeURIComponent(userId)}&select=data`,{headers:headers(token)});return rows[0]?.data||null},
