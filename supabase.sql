@@ -7,6 +7,10 @@ create table if not exists public.app_data (
 
 alter table public.app_data enable row level security;
 
+drop policy if exists "Users can read their own learning data" on public.app_data;
+drop policy if exists "Users can create their own learning data" on public.app_data;
+drop policy if exists "Users can update their own learning data" on public.app_data;
+
 create policy "Users can read their own learning data"
   on public.app_data for select
   using (auth.uid() = user_id);

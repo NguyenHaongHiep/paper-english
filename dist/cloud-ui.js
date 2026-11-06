@@ -18,6 +18,8 @@ function panel(){
 
 function installPanel(){let column=document.querySelector('.settings-layout .settings-column');if(!column||document.querySelector(`#${panelId}`))return;column.insertAdjacentHTML('afterbegin',panel())}
 new MutationObserver(installPanel).observe(document.querySelector('#app'),{childList:true,subtree:true});installPanel();
+document.addEventListener('click',()=>setTimeout(installPanel));
+setInterval(installPanel,500);
 
 document.addEventListener('click',async event=>{let button=event.target.closest('[data-cloud]');if(!button)return;let action=button.dataset.cloud;if(action==='configure'){try{cloud.configure(document.querySelector('#cloud-url')?.value||'',document.querySelector('#cloud-key')?.value||'');location.reload()}catch(error){message(error.message)}return}if(action==='sync'){await sync(true);return}if(action==='signout'){await cloud.signOut(session()?.access_token);message('Đã đăng xuất. Dữ liệu cục bộ vẫn còn trên thiết bị này.');location.reload();return}let email=document.querySelector('#cloud-email')?.value.trim(),password=document.querySelector('#cloud-password')?.value;if(!email||!password)return message('Hãy nhập email và mật khẩu.');if(password.length<6)return message('Mật khẩu cần ít nhất 6 ký tự.');try{let result=action==='signup'?await cloud.signUp(email,password):await cloud.signIn(email,password);if(!result.session)return message('Hãy mở email để xác nhận tài khoản, rồi đăng nhập.');cloud.storeSession(result.session);let remote=await cloud.load(result.user.id,result.session.access_token);if(remote){await writeData(remote);message('Đã tải dữ liệu từ Supabase.')}else{await sync();message('Đã tạo vùng dữ liệu đồng bộ.')}location.reload()}catch(error){message(error.message)}});
 
