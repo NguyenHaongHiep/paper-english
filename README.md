@@ -23,6 +23,18 @@ Mở http://localhost:4173. Giữ cửa sổ chạy server mở khi sử dụng.
 
 `npm test` chạy các kiểm thử parser, chấm điểm và thống kê; `node --check dist/app.js` kiểm tra cú pháp.
 
+## Đồng bộ Supabase
+
+Ứng dụng hỗ trợ đăng nhập bằng email và mật khẩu để đồng bộ thư viện, tiến độ và cài đặt giữa laptop và iPad.
+
+1. Tạo một project tại [Supabase](https://supabase.com), mở **SQL Editor**, dán và chạy toàn bộ nội dung trong `supabase.sql`.
+2. Trong **Authentication → Providers → Email**, bật Email. Để dùng ngay sau khi tạo tài khoản, có thể tắt **Confirm email**; nếu giữ bật, người dùng cần xác nhận email trước khi đăng nhập.
+3. Trong **Project Settings → API**, sao chép Project URL và Publishable key (hoặc anon key). Trong ứng dụng, mở Cài đặt → Kết nối Supabase và dán hai giá trị này. Không dùng hoặc đưa `service_role` key vào ứng dụng.
+4. Trong Supabase Authentication URL Configuration, đặt Site URL là tên miền Render của ứng dụng.
+5. Mở Cài đặt trong ứng dụng, tạo tài khoản bằng email/mật khẩu trên laptop và đăng nhập cùng tài khoản đó trên iPad. Cần kết nối Supabase một lần trên mỗi thiết bị.
+
+Dữ liệu tiếp tục được lưu cục bộ trong IndexedDB để ứng dụng dùng được khi mạng chập chờn. Khi đã đăng nhập, bản sao trên Supabase được làm mới định kỳ và khi nhấn **Đồng bộ ngay**. Nếu hai thiết bị cùng sửa dữ liệu đồng thời, lần đồng bộ sau cùng sẽ ghi đè toàn bộ bản sao dữ liệu.
+
 ## Giới hạn hiện tại
 
 Đây là bản triển khai ban đầu, chưa đáp ứng toàn bộ đặc tả: chưa có ánh xạ cột CSV tùy ý hoặc phát hiện trùng, chưa sửa lựa chọn trong trình chỉnh sửa, chưa có timer, kéo đổi vị trí từ bằng thao tác cảm ứng, các câu thay thế hợp lệ trong giao diện, biểu đồ phân tích đầy đủ, hay toàn bộ hiệu ứng chuyển động được yêu cầu. Các luồng Quiz, ghép câu bằng cách chạm, nhập văn bản và khôi phục sau tải lại đã được kiểm tra cơ bản; chưa kiểm thử toàn diện trên mọi thiết bị. Không nên coi phiên bản này là sản phẩm đã nghiệm thu.
