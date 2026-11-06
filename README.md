@@ -25,5 +25,10 @@ Mở http://localhost:4173. Giữ cửa sổ chạy server mở khi sử dụng.
 
 ## Giới hạn hiện tại
 
-Đây là bản triển khai ban đầu, chưa đáp ứng toàn bộ đặc tả: chưa có ánh xạ cột CSV tùy ý hoặc phát hiện trùng, chưa sửa lựa chọn trong trình chỉnh sửa, chưa có timer, kéo đổi vị trí từ, các câu thay thế hợp lệ trong giao diện, biểu đồ phân tích đầy đủ, hay toàn bộ hiệu ứng chuyển động được yêu cầu. Kiểm thử tích hợp, phục hồi IndexedDB sau tải lại và responsive chưa được xác nhận đầy đủ. Không nên coi phiên bản này là sản phẩm đã nghiệm thu.
+Đây là bản triển khai ban đầu, chưa đáp ứng toàn bộ đặc tả: chưa có ánh xạ cột CSV tùy ý hoặc phát hiện trùng, chưa sửa lựa chọn trong trình chỉnh sửa, chưa có timer, kéo đổi vị trí từ bằng thao tác cảm ứng, các câu thay thế hợp lệ trong giao diện, biểu đồ phân tích đầy đủ, hay toàn bộ hiệu ứng chuyển động được yêu cầu. Các luồng Quiz, ghép câu bằng cách chạm, nhập văn bản và khôi phục sau tải lại đã được kiểm tra cơ bản; chưa kiểm thử toàn diện trên mọi thiết bị. Không nên coi phiên bản này là sản phẩm đã nghiệm thu.
 
+
+
+## Phát âm tiếng Anh
+
+Trong Quiz, chọn **Nghe câu hỏi**; trong Ghép câu, nghe câu đã ghép hoặc câu đúng sau khi kiểm tra. Trang Cài đặt có bật/tắt, giọng Mỹ/Anh, giọng cụ thể, tốc độ và tự đọc câu đúng. Các tùy chọn được lưu cùng dữ liệu IndexedDB và có trong sao lưu JSON. CSV có thể dùng cột `tts_text`; TXT có thể thêm dòng `TTS: ...` để khai báo nội dung đọc riêng. Nếu không có giọng đúng vùng, ứng dụng hiển thị giọng tiếng Anh thay thế hoặc giọng mặc định. Giọng và khả năng phát phụ thuộc vào trình duyệt và thiết bị; một số giọng có thể dùng dịch vụ của nhà cung cấp.
